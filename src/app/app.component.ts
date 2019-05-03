@@ -1,10 +1,24 @@
-import { Component } from '@angular/core';
+import { Component, Input, ViewChild, ElementRef } from '@angular/core';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
+
+
 export class AppComponent {
-  title = 'angular-test';
+  createdBy = "David Beales";
+
+  @Input()
+  src: string;
+
+  @Input()
+  type: string;
+
+  @ViewChild('script') script: ElementRef;
+
+  ngAfterViewInit() {
+  }
+
 }

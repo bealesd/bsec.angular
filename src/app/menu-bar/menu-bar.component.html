@@ -1,0 +1,61 @@
+<div *ngIf="isNavbarSmall === false" class="navbar">
+  <button mat-button><a routerLink="/home">BSEC</a></button>
+
+  <button mat-button [matMenuTriggerFor]="welcome">Welcome</button>
+  <mat-menu #welcome="matMenu">
+    <button mat-menu-item>Our Vision</button>
+    <button mat-menu-item>Who We Are</button>
+  </mat-menu>
+
+  <button mat-button [matMenuTriggerFor]="whatsOn">Whats On</button>
+  <mat-menu #whatsOn="matMenu">
+    <button mat-menu-item>Events</button>
+    <button mat-menu-item [matMenuTriggerFor]="services">Services</button>
+
+    <button mat-menu-item >
+        <a routerLink="/whatsOn">This Week</a>
+    </button>
+
+  </mat-menu>
+
+  <mat-menu #services="matMenu">
+    <button mat-menu-item>Adults</button>
+    <button mat-menu-item>Children</button>
+  </mat-menu>
+
+  <button mat-button [matMenuTriggerFor]="findUs">Find Us</button>
+  <mat-menu #findUs="matMenu">
+    <button mat-menu-item>Our Location</button>
+    <button mat-menu-item>Contact Information</button>
+  </mat-menu>
+
+  <button mat-button [matMenuTriggerFor]="resources">Resources</button>
+  <mat-menu #resources="matMenu">
+    <button mat-menu-item>Subscribe</button>
+    <button mat-menu-item>Audio Archive</button>
+  </mat-menu>
+</div>
+
+<div *ngIf="isNavbarSmall === true" class="navbar">
+  <button mat-button><a routerLink="/home">BSEC</a></button>
+
+
+  <button mat-button [matMenuTriggerFor]="all">
+    <mat-icon>menu</mat-icon>
+  </button>
+  <mat-menu #all="matMenu">
+    <button mat-menu-item>Our Vision</button>
+    <button mat-menu-item class="border-bottom">Who We Are</button>
+
+    <button mat-menu-item>Events</button>
+    <button mat-menu-item>Adults</button>
+    <button mat-menu-item class="border-bottom">Children</button>
+
+    <button mat-menu-item>Our Location</button>
+    <button mat-menu-item class="border-bottom">Contact Information</button>
+
+    <button mat-menu-item>Subscribe</button>
+    <button mat-menu-item>Audio Archive</button>
+  </mat-menu>
+
+</div>

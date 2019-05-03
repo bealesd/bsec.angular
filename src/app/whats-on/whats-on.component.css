@@ -1,0 +1,41 @@
+li.selected {
+    background-color: black !important;
+    color: white;
+  }
+
+  ul li{
+    list-style-type: none;
+  }
+
+ul li a:hover {
+    background-color: rgba(233, 220, 220, 0.945);
+    color: darkgray;
+    transition: all 0.7s ease-in;
+}
+
+ul li a {
+    transition: all 1s ease-out;
+}
+
+ul li a{
+    display: inline-block;
+    padding: 5px 0px 5px 0px;
+    color: white;
+    border: solid 2px;
+    text-decoration: none;
+    font-family: Avenir-Book, Helvetica Neue, Helvetica, Arial !important;
+    font-size: 12px;
+    font-weight: 700;
+    line-height: 28px !important;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    text-align: center;
+    margin: 10px 0px 10px 0px;
+    min-width: 200px;
+}
+
+#whatsOnDiv {
+  padding: 100px 0px 100px 0px;
+  background-color: darkgrey;
+  font-family: Avenir-Book, Helvetica Neue, Helvetica, Arial;
+}

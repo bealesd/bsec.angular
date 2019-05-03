@@ -1,0 +1,15 @@
+<div id="whatsOnDiv">
+
+  <ul>
+    <li *ngFor="let event of weeklyEvents"
+     [class.selected]="event === selectedWeeklyEvent">
+      <!-- (click)="onSelect(event)" -->
+      <a routerLink="/event/{{event.name}}">{{event.name}}</a>
+    </li>
+  </ul>
+
+  <div *ngIf="selectedWeeklyEvent">
+    <h2>{{selectedWeeklyEvent.name | uppercase}} Details</h2>
+  </div>
+
+</div>
