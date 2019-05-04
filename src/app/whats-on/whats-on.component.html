@@ -1,15 +1,35 @@
 <div id="whatsOnDiv">
+  <h1>
+    This Week
+  </h1>
 
-  <ul>
-    <li *ngFor="let event of weeklyEvents"
-     [class.selected]="event === selectedWeeklyEvent">
-      <!-- (click)="onSelect(event)" -->
-      <a routerLink="/event/{{event.name}}">{{event.name}}</a>
-    </li>
-  </ul>
+<div *ngFor="let event of weeklyEvents">
+    <mat-accordion class="example-headers-align">
+  <mat-expansion-panel>
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+            <a matLine routerLink="/event/{{event.name}}">{{event.name}}</a>
+        </mat-panel-title>
+        <!-- <mat-panel-description>
+          Details
+        </mat-panel-description> -->
+      </mat-expansion-panel-header>
+    
+      <p *ngIf="event.description" [innerHTML]="event.description"></p>
 
-  <div *ngIf="selectedWeeklyEvent">
-    <h2>{{selectedWeeklyEvent.name | uppercase}} Details</h2>
-  </div>
+    </mat-expansion-panel>
+  </mat-accordion>
+   </div>
+
+      <mat-divider [inset]="true" *ngIf="!last"></mat-divider>
+
+
+
+    <!-- Parents and carers bring their children on Tuesdays from 10 till 11.30 during school term time.
+      
+      Start with crafts, painting and lots of toys to share!
+      Enjoy drinks and a biscuit,  and time to meet others and make new friends.
+      There will be a story from the Bible and a song time.
+      If you are new and would like to come, please use this form to ensure there are places available. -->
 
 </div>

@@ -33,7 +33,7 @@ export class WhatsOnComponent implements OnInit {
   ngOnInit() {
   }
 
-  onSelect(weeklyEvent: WeeklyEvent): void {
+  showInfo(weeklyEvent: WeeklyEvent){
     this.selectedWeeklyEvent = weeklyEvent;
   }
 

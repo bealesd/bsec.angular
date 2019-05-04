@@ -3,17 +3,20 @@
 
   <button mat-button [matMenuTriggerFor]="welcome">Welcome</button>
   <mat-menu #welcome="matMenu">
-    <button mat-menu-item>Our Vision</button>
-    <button mat-menu-item>Who We Are</button>
+    <button mat-menu-item><a routerLink="/home/1">Our Vision</a></button>
+    <button mat-menu-item><a [routerLink]="['/home', '2']">Who We Are</a></button>
   </mat-menu>
 
   <button mat-button [matMenuTriggerFor]="whatsOn">Whats On</button>
   <mat-menu #whatsOn="matMenu">
-    <button mat-menu-item>Events</button>
+    <button mat-menu-item>Upcoming Events</button>
     <button mat-menu-item [matMenuTriggerFor]="services">Services</button>
 
-    <button mat-menu-item >
+    <button mat-menu-item [matMenuTriggerFor]="overview">
         <a routerLink="/whatsOn">This Week</a>
+        <mat-menu #overview="matMenu">
+            <button mat-menu-item><a routerLink="/calendar">Calendar</a></button>
+        </mat-menu>
     </button>
 
   </mat-menu>
@@ -36,9 +39,9 @@
   </mat-menu>
 </div>
 
+
 <div *ngIf="isNavbarSmall === true" class="navbar">
   <button mat-button><a routerLink="/home">BSEC</a></button>
-
 
   <button mat-button [matMenuTriggerFor]="all">
     <mat-icon>menu</mat-icon>
@@ -48,6 +51,10 @@
     <button mat-menu-item class="border-bottom">Who We Are</button>
 
     <button mat-menu-item>Events</button>
+    <button mat-menu-item >
+      <a routerLink="/whatsOn">This Week</a>
+  </button>
+  
     <button mat-menu-item>Adults</button>
     <button mat-menu-item class="border-bottom">Children</button>
 

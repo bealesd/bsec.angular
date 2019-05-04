@@ -17,7 +17,7 @@ export class MenuBarComponent implements OnInit {
   }
 
   setIsNavbarSmall(){
-    this.isNavbarSmall = window.innerWidth < 700;
+    this.isNavbarSmall = window.innerWidth < 500;
   }
 
   onResize(){

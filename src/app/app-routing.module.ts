@@ -6,9 +6,11 @@ import { PreSchoolComponent } from './pre-school/pre-school.component';
 import { YouthClubComponent } from './youth-club/youth-club.component';
 import { HomeGroupsComponent } from './home-groups/home-groups.component';
 import { HomeComponent } from './home/home.component';
+import { CalendarComponent } from './calendar/calendar.component';
 
 const routes: Routes = [
   { path: 'home', component: HomeComponent },
+  { path: 'home/:id', component: HomeComponent },
   { path: 'whatsOn', component: WhatsOnComponent },
   // { path: '', redirectTo: '/whatsOn', pathMatch: 'full' },
   { path: 'event/Services', component: ServicesComponent },
@@ -16,6 +18,8 @@ const routes: Routes = [
   { path: 'event/Pre School', component: PreSchoolComponent },
   { path: 'event/Youth Club', component: YouthClubComponent },
   { path: 'event/Home Groups', component: HomeGroupsComponent },
+  { path: 'calendar', component: CalendarComponent },
+  
 ];
 
 @NgModule({

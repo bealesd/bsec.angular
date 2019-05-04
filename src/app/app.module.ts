@@ -49,7 +49,8 @@ import {
 } from '@angular/material';
 
 import { MenuBarComponent } from './menu-bar/menu-bar.component';
-import { HomeComponent } from './home/home.component'
+import { HomeComponent } from './home/home.component';
+import { CalendarComponent } from './calendar/calendar.component'
 
 
 @NgModule({
@@ -62,6 +63,7 @@ import { HomeComponent } from './home/home.component'
     HomeGroupsComponent,
     MenuBarComponent,
     HomeComponent,
+    CalendarComponent,
   ],
   imports: [
     BrowserModule,
