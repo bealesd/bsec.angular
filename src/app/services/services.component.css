@@ -1,0 +1,20 @@
+table {
+    width: 100%;
+  }
+  
+  .mat-form-field {
+    font-size: 14px;
+    width: 100%;
+  }
+
+  @media only screen and (min-width: 600px){
+    #servicesDiv {
+      padding: 0px 25% 0px 25%;
+    }
+  }
+  
+  @media only screen and (max-width: 599px){
+    #servicesDiv {
+      padding: 0px 0px 0px 0px;
+    }
+  }

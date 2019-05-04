@@ -37,7 +37,7 @@ export class HomeComponent implements OnInit {
         document.querySelectorAll('#whoWeAreDiv')[0].scrollIntoView({ behavior: "smooth", block: "start" });
       }
 
-    }, 1000);
+    }, 500);
   }
 
   @HostBinding("attr.style")

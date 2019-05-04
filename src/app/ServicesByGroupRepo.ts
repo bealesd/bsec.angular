@@ -1,43 +1,31 @@
-import { ServicesByGroup } from './ServicesByGroup';
 import { Service } from './Service';
 
 export class ServicesByGroupRepo {
-  servicesByGroup: ServicesByGroup[];
+  services: Service[];
 
   constructor() { 
-    this.servicesByGroup = [];
+    this.services = [];
   }
 
-  add(group: string, services: Service[]) {
-    let groupAlreadyAdded = false;
-    for (let index = 0; index < this.servicesByGroup.length; index++) {
-      const serviceByGroup = this.servicesByGroup[index];
-      if (serviceByGroup.group === group) {
-        groupAlreadyAdded = true;
+  get(group: string){
+    let servicecByGroup = [];
+    for (let index = 0; index < this.services.length; index++) {
+      const service = this.services[index];
+      if (service.group === group) {
+        servicecByGroup.push(service);
       }
     }
-    if (groupAlreadyAdded)
-      return false;
-    else {
-      this.servicesByGroup.push(new ServicesByGroup(group, services));
-      return true;
-    }
+    return servicecByGroup;
   }
 
-  get(group: string) {
-    for (let index = 0; index < this.servicesByGroup.length; index++) {
-      const serviceByGroup = this.servicesByGroup[index];
-      if (serviceByGroup.group === group) {
-        return serviceByGroup;
-      }
-    }
-  }
-
-  keys() {
+  groups() {
     let keys = [];
-    for (let index = 0; index < this.servicesByGroup.length; index++) {
-      keys.push(this.servicesByGroup[index].group);
+    for (let index = 0; index < this.services.length; index++) {
+      if (keys.indexOf(this.services[index].group) === -1) {
+        keys.push(this.services[index].group);
+      }
     }
     return keys;
   }
+
 }

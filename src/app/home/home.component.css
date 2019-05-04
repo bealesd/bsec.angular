@@ -1,4 +1,4 @@
-@media only screen and (min-height: 500px){
+@media only screen and (min-height: 300px){
 #mainTitleDiv {
     background-color: grey;
     background: url("../images/main.jpg");
@@ -11,7 +11,7 @@
     }
 }
 
-@media only screen and (max-height: 499px){
+@media only screen and (max-height: 299px){
     #mainTitleDiv {
         background-color: grey;
         background: url("../images/main.jpg");
@@ -34,7 +34,7 @@
     font-size: 60px !important;
 }
 
-@media only screen and (min-height: 500px){
+@media only screen and (min-height: 300px){
 #ourVisionDiv{
     line-height: 100vh;
     height: 100vh;
@@ -42,7 +42,7 @@
     }
 }
 
-@media only screen and (max-height: 499px){
+@media only screen and (max-height: 299px){
     #ourVisionDiv{
         line-height: auto;
         height: auto;
@@ -63,7 +63,7 @@
     text-transform: uppercase;
 }
 
-@media only screen and (min-height: 500px){
+@media only screen and (min-height: 300px){
     #whoWeAreDiv{
         line-height: 100vh;
         height: 100vh;
@@ -72,7 +72,7 @@
     }
 }
 
-@media only screen and (max-height: 499px){
+@media only screen and (max-height: 299px){
     #whoWeAreDiv{
         line-height: auto;
         height: auto;

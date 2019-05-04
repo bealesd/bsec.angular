@@ -3,4 +3,5 @@ export class Service {
     book: string;
     who: string;
     date: Date;
+    group: string;
   }
