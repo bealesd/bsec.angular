@@ -37,4 +37,8 @@ export class MenuBarComponent implements OnInit {
     }
   }
 
+  onCalendarLinkClick(){
+    window.location.href = `/calendar`;
+  }
+
 }

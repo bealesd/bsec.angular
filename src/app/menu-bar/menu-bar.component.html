@@ -15,7 +15,7 @@
     <button mat-menu-item [matMenuTriggerFor]="thisWeek" routerLink="/whatsOn">
       This Week
       <mat-menu #thisWeek="matMenu">
-        <button mat-menu-item routerLink="/calendar">Calendar</button>
+        <button mat-menu-item (click)="onCalendarLinkClick()">Calendar</button>
       </mat-menu>
     </button>
 
