@@ -50,7 +50,8 @@ import {
 
 import { MenuBarComponent } from './menu-bar/menu-bar.component';
 import { HomeComponent } from './home/home.component';
-import { CalendarComponent } from './calendar/calendar.component'
+import { CalendarComponent } from './calendar/calendar.component';
+import { OurLocationComponent } from './our-location/our-location.component'
 
 
 @NgModule({
@@ -64,6 +65,7 @@ import { CalendarComponent } from './calendar/calendar.component'
     MenuBarComponent,
     HomeComponent,
     CalendarComponent,
+    OurLocationComponent,
   ],
   imports: [
     BrowserModule,

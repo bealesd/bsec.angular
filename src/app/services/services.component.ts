@@ -18,9 +18,9 @@ export class ServicesComponent implements OnInit {
   servicesByGroup: Service[];
   serviceGroups: {};
   serviceGroupsNames: string[];
-  childrensTab: string;
   childrensTabContent: string;
   childrensTabImageUrl: string;
+  subtitle: string;
 
   displayedColumns: string[] = ['date', 'title', 'book', 'who', 'listen'];
   dataSource: MatTableDataSource<Service>;
@@ -43,21 +43,23 @@ export class ServicesComponent implements OnInit {
     this.serviceGroups = this.servicesByGroupRepo.getServiceGroupNamesAndDescriptions();
     this.dataSource = new MatTableDataSource(this.servicesByGroup);
 
-    this.childrensTab = "JAM";
+    this.updateChildren("JAM");
   }
 
   applyFilter(filterValue: string) {
     this.dataSource.filter = filterValue.trim().toLowerCase();
   }
 
-  updateChildren(tab){
-    if (tab === 'JAM') {
+  updateChildren(title){
+    if (title === 'JAM') {
       this.childrensTabImageUrl = "assets/img/Jam.jpg";
-      this.childrensTabContent = "Jam content"
+      this.childrensTabContent = `We aim to inspire our 4-7s to love and know God. We do a lots of activities each Sunday morning to make sure all the children have a variety of ways of hearing the message that God loves them and they should love him too.`;
+      this.subtitle = `4 - 7 year olds`;
     }
-    else if (tab === 'KFC') {
+    else if (title === 'KFC') {
       this.childrensTabImageUrl = "assets/img/kfc.jpg";
-      this.childrensTabContent = "KFC content"
+      this.childrensTabContent = `Activities are designed to be thought provoking and challenging – and fun!`;
+      this.subtitle = `7 - 11 year olds`;
     }
     
   }

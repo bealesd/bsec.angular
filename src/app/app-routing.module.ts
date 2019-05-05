@@ -7,6 +7,7 @@ import { YouthClubComponent } from './youth-club/youth-club.component';
 import { HomeGroupsComponent } from './home-groups/home-groups.component';
 import { HomeComponent } from './home/home.component';
 import { CalendarComponent } from './calendar/calendar.component';
+import { OurLocationComponent } from './our-location/our-location.component';
 
 const routes: Routes = [
   { path: 'home', component: HomeComponent },
@@ -19,6 +20,7 @@ const routes: Routes = [
   { path: 'event/Youth Club', component: YouthClubComponent },
   { path: 'event/Home Groups', component: HomeGroupsComponent },
   { path: 'calendar', component: CalendarComponent },
+  { path: 'ourLocation', component: OurLocationComponent },
   
 ];
 
