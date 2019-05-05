@@ -4,4 +4,5 @@ export class Service {
     who: string;
     date: Date;
     group: string;
+    listen: string;
   }

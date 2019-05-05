@@ -7,6 +7,16 @@ table {
     width: 100%;
   }
 
+  a {
+    color: inherit;
+    font-family: inherit;
+    text-decoration: none;
+  }
+
+  a:hover{
+    font-size: 16px;
+  }
+
   @media only screen and (min-width: 600px){
     #servicesDiv {
       padding: 0px 25% 0px 25%;

@@ -1,10 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { Location } from '@angular/common';
 import { Router } from '@angular/router';
 
-import { ServicesByGroup } from '../ServicesByGroup';
-import { ServicesByGroupRepo } from '../ServicesByGroupRepo';
+import { ServicesRepo } from '../ServicesRepo';
 import { MatTableDataSource } from '@angular/material';
 import { Service } from '../Service';
 
@@ -15,11 +13,13 @@ import { Service } from '../Service';
 })
 
 export class ServicesComponent implements OnInit {
-  type: string;
+  servicesByGroupRepo: ServicesRepo;
+  serviceGroupName: string;
   servicesByGroup: Service[];
-  groups: string[];
-  servicesByGroupRepo: ServicesByGroupRepo;
-  displayedColumns: string[] = ['title', 'book', 'who', 'group'];
+  serviceGroups: {};
+  serviceGroupsNames: string[];
+
+  displayedColumns: string[] = ['date', 'title', 'book', 'who', 'listen'];
   dataSource: MatTableDataSource<Service>;
 
   constructor(
@@ -27,39 +27,17 @@ export class ServicesComponent implements OnInit {
     private route: ActivatedRoute,
   ) {
     this.router.routeReuseStrategy.shouldReuseRoute = () => false;
-
-    this.servicesByGroupRepo = new ServicesByGroupRepo();
-    this.servicesByGroupRepo.services.push(
-      { book: "john", title: "cure the lame", who: "mike", date: new Date(), group: "children" }
-    );
-    this.servicesByGroupRepo.services.push(
-      { book: "john", title: "cure the lame", who: "mike", date: new Date(), group: "children" }
-    );
-    this.servicesByGroupRepo.services.push(
-      { book: "john", title: "cure the lame", who: "mike", date: new Date(), group: "children" }
-    );
-
-    this.servicesByGroupRepo.services.push(
-      { book: "james", title: "feeding", who: "max", date: new Date(), group: "adults" }
-    );
-    this.servicesByGroupRepo.services.push(
-      { book: "james", title: "feeding", who: "max", date: new Date(), group: "adults" }
-    );
-    this.servicesByGroupRepo.services.push(
-      { book: "james", title: "feeding", who: "max", date: new Date(), group: "adults" }
-    );
-    this.servicesByGroupRepo.services.push(
-      { book: "james", title: "feeding", who: "max", date: new Date(), group: "adults" }
-    );
+    this.servicesByGroupRepo = new ServicesRepo();
   }
 
   ngOnInit() {
-    this.type = this.route.snapshot.paramMap.get('type');
-    if (this.type !== undefined && this.type !== null && this.type !== "") {
-      this.servicesByGroup = this.servicesByGroupRepo.get(this.type);
+    this.serviceGroupName = this.route.snapshot.paramMap.get('type');
+    if (this.serviceGroupName !== undefined && this.serviceGroupName !== null && this.serviceGroupName !== "") {
+      this.servicesByGroup = this.servicesByGroupRepo.getService(this.serviceGroupName);
     }
-    this.groups = this.servicesByGroupRepo.groups();
 
+    this.serviceGroupsNames = this.servicesByGroupRepo.getServiceGroupNames();
+    this.serviceGroups = this.servicesByGroupRepo.getServiceGroupNamesAndDescriptions();
     this.dataSource = new MatTableDataSource(this.servicesByGroup);
   }
 

@@ -12,7 +12,7 @@ const routes: Routes = [
   { path: 'home', component: HomeComponent },
   { path: 'home/:id', component: HomeComponent },
   { path: 'whatsOn', component: WhatsOnComponent },
-  // { path: '', redirectTo: '/whatsOn', pathMatch: 'full' },
+  { path: '', redirectTo: '/home', pathMatch: 'full' },
   { path: 'event/Services', component: ServicesComponent },
   { path: 'event/services/:type', component: ServicesComponent },
   { path: 'event/Pre School', component: PreSchoolComponent },
