@@ -18,6 +18,9 @@ export class ServicesComponent implements OnInit {
   servicesByGroup: Service[];
   serviceGroups: {};
   serviceGroupsNames: string[];
+  childrensTab: string;
+  childrensTabContent: string;
+  childrensTabImageUrl: string;
 
   displayedColumns: string[] = ['date', 'title', 'book', 'who', 'listen'];
   dataSource: MatTableDataSource<Service>;
@@ -39,10 +42,24 @@ export class ServicesComponent implements OnInit {
     this.serviceGroupsNames = this.servicesByGroupRepo.getServiceGroupNames();
     this.serviceGroups = this.servicesByGroupRepo.getServiceGroupNamesAndDescriptions();
     this.dataSource = new MatTableDataSource(this.servicesByGroup);
+
+    this.childrensTab = "JAM";
   }
 
   applyFilter(filterValue: string) {
     this.dataSource.filter = filterValue.trim().toLowerCase();
+  }
+
+  updateChildren(tab){
+    if (tab === 'JAM') {
+      this.childrensTabImageUrl = "assets/img/Jam.jpg";
+      this.childrensTabContent = "Jam content"
+    }
+    else if (tab === 'KFC') {
+      this.childrensTabImageUrl = "assets/img/kfc.jpg";
+      this.childrensTabContent = "KFC content"
+    }
+    
   }
 
 }
