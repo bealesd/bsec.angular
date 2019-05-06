@@ -8,6 +8,7 @@ import { HomeGroupsComponent } from './home-groups/home-groups.component';
 import { HomeComponent } from './home/home.component';
 import { CalendarComponent } from './calendar/calendar.component';
 import { OurLocationComponent } from './our-location/our-location.component';
+import { ContactUsComponent } from './contact-us/contact-us.component';
 
 const routes: Routes = [
   { path: 'home', component: HomeComponent },
@@ -21,6 +22,7 @@ const routes: Routes = [
   { path: 'event/Home Groups', component: HomeGroupsComponent },
   { path: 'calendar', component: CalendarComponent },
   { path: 'ourLocation', component: OurLocationComponent },
+  { path: 'contactUs', component: ContactUsComponent },
   
 ];
 

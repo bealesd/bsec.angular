@@ -10,6 +10,7 @@ import { YouthClubComponent } from './youth-club/youth-club.component';
 import { HomeGroupsComponent } from './home-groups/home-groups.component';
 
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {
   MatAutocompleteModule,
   MatBadgeModule,
@@ -51,7 +52,8 @@ import {
 import { MenuBarComponent } from './menu-bar/menu-bar.component';
 import { HomeComponent } from './home/home.component';
 import { CalendarComponent } from './calendar/calendar.component';
-import { OurLocationComponent } from './our-location/our-location.component'
+import { OurLocationComponent } from './our-location/our-location.component';
+import { ContactUsComponent } from './contact-us/contact-us.component'
 
 
 @NgModule({
@@ -66,8 +68,11 @@ import { OurLocationComponent } from './our-location/our-location.component'
     HomeComponent,
     CalendarComponent,
     OurLocationComponent,
+    ContactUsComponent,
   ],
   imports: [
+    ReactiveFormsModule,
+    FormsModule,
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,

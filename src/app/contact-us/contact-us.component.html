@@ -1,0 +1,34 @@
+<div id="contactUsDiv">
+  <h1>
+    Contact Form
+  </h1>
+
+  <div class="example-container">
+    <mat-form-field>
+      <input matInput placeholder="Enter your email" [formControl]="email" required>
+      <mat-error *ngIf="email.invalid">{{getEmailErrorMessage()}}</mat-error>
+    </mat-form-field>
+
+    <mat-form-field>
+      <input matInput placeholder="Enter your name" [formControl]="name" required>
+      <mat-error *ngIf="name.invalid">{{getNameErrorMessage()}}</mat-error>
+    </mat-form-field>
+
+    <mat-form-field>
+      <input matInput placeholder="Enter subject" [formControl]="subject" required>
+      <mat-error *ngIf="subject.invalid">{{getSubjectErrorMessage()}}</mat-error>
+    </mat-form-field>
+
+    <mat-form-field>
+      <textarea matInput placeholder="Message" [formControl]="message" required></textarea>
+      <mat-error *ngIf="message.invalid">{{getMessageErrorMessage()}}</mat-error>
+    </mat-form-field>
+
+
+  </div>
+<br>
+  <button mat-button>Submit</button>
+  <p>By using this form you consent to the details provided being emailed to the church.</p>
+
+
+</div>
