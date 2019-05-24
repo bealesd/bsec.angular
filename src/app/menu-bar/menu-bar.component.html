@@ -1,46 +1,59 @@
 <div *ngIf="isNavbarSmall === false" class="navbar">
-  <button mat-button routerLink="/home">BSEC</button>
+  <button mat-button [routerLink]="['/home']">BSEC</button>
 
+  <!--#region Welcome   -->
   <button mat-button [matMenuTriggerFor]="welcome">Welcome</button>
   <mat-menu #welcome="matMenu">
     <button mat-menu-item (click)="onWelcomeLinkClick(1)">Our Vision</button>
     <button mat-menu-item (click)="onWelcomeLinkClick(2)">Who We Are</button>
   </mat-menu>
+  <!--#endregion -->
 
+  <!--#region Whats On   -->
   <button mat-button [matMenuTriggerFor]="whatsOn">Whats On</button>
   <mat-menu #whatsOn="matMenu">
+
+    <button mat-menu-item (click)="onCalendarLinkClick()">Calendar</button>
+
+    <button mat-menu-item [routerLink]="['/event/Pre School']">Pre School</button>
+    <button mat-menu-item [routerLink]="['/event/Home Groups']">Home Groups</button>
+
+    <button mat-menu-item [matMenuTriggerFor]="services"  [routerLink]="['/event/Services']">Services</button>
+    <mat-menu #services="matMenu">
+      <button mat-menu-item [routerLink]="['/event/services/adults']">Adults</button>
+      <button mat-menu-item [routerLink]="['/event/services/children']">Children</button>
+    </mat-menu>
+
     <button mat-menu-item>Upcoming Events</button>
 
+    <button mat-menu-item [routerLink]="['/event/Youth Club']">Youth Club</button>
 
-    <button mat-menu-item [matMenuTriggerFor]="thisWeek" routerLink="/whatsOn">
-      This Week
-      <mat-menu #thisWeek="matMenu">
-        <button mat-menu-item [matMenuTriggerFor]="services" routerLink="/event/Services">Services</button>
-        <button mat-menu-item (click)="onCalendarLinkClick()">Calendar</button>
-      </mat-menu>
-    </button>
+    <button mat-menu-item routerLink="/whatsOn"> This Week</button>
 
   </mat-menu>
 
-  <mat-menu #services="matMenu">
-    <button mat-menu-item routerLink="/event/services/adults">Adults</button>
-    <button mat-menu-item routerLink="/event/services/children">Children</button>
-  </mat-menu>
 
+  <!--#endregion -->
+
+  <!--#region Find Us   -->
   <button mat-button [matMenuTriggerFor]="findUs">Find Us</button>
   <mat-menu #findUs="matMenu">
-    <button mat-menu-item routerLink="ourLocation">Our Location</button>
-    <button mat-menu-item routerLink="contactUs">Contact Us</button>
+    <button mat-menu-item [routerLink]="['/ourLocation']">Our Location</button>
+    <button mat-menu-item [routerLink]="['/contactUs']">Contact Us</button>
   </mat-menu>
+  <!--#endregion -->
 
+  <!--#region Resources   -->
   <button mat-button [matMenuTriggerFor]="resources">Resources</button>
   <mat-menu #resources="matMenu">
     <button mat-menu-item>Subscribe</button>
     <button mat-menu-item>Audio Archive</button>
   </mat-menu>
+  <!--#endregion -->
 </div>
 
 
+<!--#region Hamburger Navigation Bar  -->
 
 <div *ngIf="isNavbarSmall === true" class="navbar">
   <button mat-button><a routerLink="/home">BSEC</a></button>
@@ -67,4 +80,5 @@
     <button mat-menu-item>Audio Archive</button>
   </mat-menu>
 
+  <!--#endregion -->
 </div>
