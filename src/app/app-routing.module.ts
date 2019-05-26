@@ -22,7 +22,7 @@ const routes: Routes = [
   { path: 'event/Youth Club', component: YouthClubComponent },
   { path: 'event/Home Groups', component: HomeGroupsComponent },
   { path: 'event/Upcoming', component: UpcomingEventsComponent },
-  { path: 'calendar', component: CalendarComponent },
+  { path: 'event/Calendar', component: CalendarComponent },
   { path: 'ourLocation', component: OurLocationComponent },
   { path: 'contactUs', component: ContactUsComponent },
   

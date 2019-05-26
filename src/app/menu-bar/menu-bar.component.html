@@ -13,7 +13,7 @@
   <button mat-button [matMenuTriggerFor]="whatsOn">Whats On</button>
   <mat-menu #whatsOn="matMenu">
 
-    <button mat-menu-item (click)="onCalendarLinkClick()">Weekly Events</button>
+    <button mat-menu-item  [routerLink]="['/event/Calendar']">Weekly Events</button>
     <button mat-menu-item  [routerLink]="['/event/Upcoming']">Special Events</button>
     <!-- <button mat-menu-item routerLink="/whatsOn"> This Week</button> -->
     <mat-divider></mat-divider>
