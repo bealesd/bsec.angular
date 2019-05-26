@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { WeeklyEvent } from '../weekly-event';
-import { WeeklyEvents } from '../weekly-events';
+import { WeeklyEvent } from '../archive/weekly-event';
+import { WeeklyEvents } from '../archive/weekly-events';
 
 import { ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';

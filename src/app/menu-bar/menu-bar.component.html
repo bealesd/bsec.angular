@@ -13,22 +13,23 @@
   <button mat-button [matMenuTriggerFor]="whatsOn">Whats On</button>
   <mat-menu #whatsOn="matMenu">
 
-    <button mat-menu-item (click)="onCalendarLinkClick()">Calendar</button>
-
-    <button mat-menu-item [routerLink]="['/event/Pre School']">Pre School</button>
+    <button mat-menu-item (click)="onCalendarLinkClick()">Weekly Events</button>
+    <button mat-menu-item  [routerLink]="['/event/Upcoming']">Special Events</button>
+    <!-- <button mat-menu-item routerLink="/whatsOn"> This Week</button> -->
+    <mat-divider></mat-divider>
     <button mat-menu-item [routerLink]="['/event/Home Groups']">Home Groups</button>
+    <button mat-menu-item [routerLink]="['/event/Pre School']">Todler Group</button>
 
-    <button mat-menu-item [matMenuTriggerFor]="services"  [routerLink]="['/event/Services']">Services</button>
+    <button mat-menu-item [matMenuTriggerFor]="services" [routerLink]="['/event/Services']">Services</button>
     <mat-menu #services="matMenu">
       <button mat-menu-item [routerLink]="['/event/services/adults']">Adults</button>
-      <button mat-menu-item [routerLink]="['/event/services/children']">Children</button>
+      <button mat-menu-item [routerLink]="['/event/services/kids']">Kids</button>
     </mat-menu>
 
-    <button mat-menu-item>Upcoming Events</button>
+    <button mat-menu-item [routerLink]="['/event/Youth Club']">Youth Clubs</button>
 
-    <button mat-menu-item [routerLink]="['/event/Youth Club']">Youth Club</button>
+  
 
-    <button mat-menu-item routerLink="/whatsOn"> This Week</button>
 
   </mat-menu>
 

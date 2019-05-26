@@ -1,35 +1,50 @@
-<div id="calendarDiv">
+<div class="divWithMargin">
 
-<mat-form-field>
+  <h1>
+    Weekly Programme
+  </h1>
+
+  <mat-form-field>
     <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
   </mat-form-field>
 
-<table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+  <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
 
     <!-- Symbol Column -->
     <ng-container matColumnDef="day">
-        <th mat-header-cell *matHeaderCellDef > Day </th>
-        <td mat-cell *matCellDef="let element"> {{element.day}} </td>
-      </ng-container>
+      <th mat-header-cell *matHeaderCellDef>
+        <mat-icon>calendar_today</mat-icon>
+      </th>
+      <td mat-cell *matCellDef="let element"> {{element.day}} </td>
+    </ng-container>
 
     <!-- Name Column -->
     <ng-container matColumnDef="timeStart">
-        <th mat-header-cell *matHeaderCellDef > Start </th>
-        <td mat-cell *matCellDef="let element"> {{element.timeStart.friendly}} </td>
-      </ng-container>
-    
-      <!-- Weight Column -->
-      <ng-container matColumnDef="timeEnd">
-        <th mat-header-cell *matHeaderCellDef > End </th>
-        <td mat-cell *matCellDef="let element"> {{element.timeEnd.friendly}} </td>
-      </ng-container>
+      <th mat-header-cell *matHeaderCellDef>
+        <!-- <mat-icon>access_time</mat-icon>  -->
+        <mat-icon>timer</mat-icon>
+      </th>
+      <td mat-cell *matCellDef="let element"> {{element.timeStart.friendly}} </td>
+    </ng-container>
+
+    <!-- Weight Column -->
+    <ng-container matColumnDef="timeEnd">
+      <th mat-header-cell *matHeaderCellDef>
+        <mat-icon>timer_off</mat-icon>
+        <!-- <mat-icon>timelapse</mat-icon>  -->
+
+      </th>
+      <td mat-cell *matCellDef="let element"> {{element.timeEnd.friendly}} </td>
+    </ng-container>
 
     <!-- Position Column -->
     <ng-container matColumnDef="name">
-      <th mat-header-cell *matHeaderCellDef > Event </th>
+      <th mat-header-cell *matHeaderCellDef>
+        <mat-icon>book</mat-icon>
+      </th>
       <td mat-cell *matCellDef="let element"> {{element.name}} </td>
     </ng-container>
-  
+
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
     <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
   </table>

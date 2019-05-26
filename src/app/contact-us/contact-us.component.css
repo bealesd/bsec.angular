@@ -6,15 +6,3 @@
   .example-container > * {
     width: 60%;
   }
-
-  @media only screen and (min-width: 600px){
-    #contactUsDiv {
-      padding: 0px 25% 0px 25%;
-    }
-  }
-  
-  @media only screen and (max-width: 599px){
-    #contactUsDiv {
-      padding: 0px 0px 0px 0px;
-    }
-}

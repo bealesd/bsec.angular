@@ -2,12 +2,21 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
 import { AppComponent } from './app.component';
+
 import { WhatsOnComponent } from './whats-on/whats-on.component';
 import { AppRoutingModule } from './app-routing.module';
 import { ServicesComponent } from './services/services.component';
 import { PreSchoolComponent } from './pre-school/pre-school.component';
 import { YouthClubComponent } from './youth-club/youth-club.component';
 import { HomeGroupsComponent } from './home-groups/home-groups.component';
+import { MenuBarComponent } from './menu-bar/menu-bar.component';
+import { HomeComponent } from './home/home.component';
+import { CalendarComponent } from './calendar/calendar.component';
+import { OurLocationComponent } from './our-location/our-location.component';
+import { ContactUsComponent } from './contact-us/contact-us.component';
+import { UpcomingEventsComponent } from './upcoming-events/upcoming-events.component'
+
+// import { FlexLayoutModule } from '@angular/flex-layout';
 
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
@@ -49,11 +58,7 @@ import {
   MatTreeModule,
 } from '@angular/material';
 
-import { MenuBarComponent } from './menu-bar/menu-bar.component';
-import { HomeComponent } from './home/home.component';
-import { CalendarComponent } from './calendar/calendar.component';
-import { OurLocationComponent } from './our-location/our-location.component';
-import { ContactUsComponent } from './contact-us/contact-us.component'
+
 
 
 @NgModule({
@@ -69,6 +74,7 @@ import { ContactUsComponent } from './contact-us/contact-us.component'
     CalendarComponent,
     OurLocationComponent,
     ContactUsComponent,
+    UpcomingEventsComponent,
   ],
   imports: [
     ReactiveFormsModule,

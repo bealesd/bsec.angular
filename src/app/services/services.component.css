@@ -14,6 +14,43 @@
 table {
     width: 100%;
   }
+
+  table td {
+    color: #7d7d7d;
+    text-align: center;
+    padding: 10px 20px 10px 20px;
+    font-size: 15px;
+    line-height: 26px;
+}
+
+  table th {
+    color: white;
+            text-align: center;
+    background-color: rgb(46, 73, 204);
+}
+  table  tr:nth-child(n+1):nth-child(odd) {
+    background-color: rgb(226, 244, 247);
+}
+
+table  tr:nth-child(n+1):nth-child(even) {
+    background-color: rgb(242, 249, 250);
+}
+
+table tr:first-child th:first-child {
+  border-top-left-radius: 6px;
+}
+
+table tr:first-child th:last-child {
+  border-top-right-radius: 6px;
+}
+
+table tr:last-child td:first-child {
+  border-bottom-left-radius: 6px;
+}
+
+table tr:last-child td:last-child {
+  border-bottom-right-radius: 6px;
+}
   
   .mat-form-field {
     font-size: 14px;
@@ -27,22 +64,13 @@ table {
   }
 
   a:hover{
+    font-weight: bolder;
     font-size: 16px;
   }
 
-  @media only screen and (min-width: 600px){
-    #servicesDiv {
-      padding: 0px 25% 0px 25%;
-    }
-  }
   
   @media only screen and (max-width: 599px){
-    #servicesDiv {
-      padding: 0px 0px 0px 0px;
-    }
-
     .example-card {
       max-width: 400px;
     }
-
   }

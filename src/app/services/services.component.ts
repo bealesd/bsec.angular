@@ -1,9 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild, ChangeDetectorRef  } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Router } from '@angular/router';
 
 import { ServicesRepo } from '../ServicesRepo';
-import { MatTableDataSource } from '@angular/material';
+import { MatPaginator, MatTableDataSource } from '@angular/material';
 import { Service } from '../Service';
 
 @Component({
@@ -16,18 +16,21 @@ export class ServicesComponent implements OnInit {
   servicesByGroupRepo: ServicesRepo;
   serviceGroupName: string;
   servicesByGroup: Service[];
-  serviceGroups: {};
-  serviceGroupsNames: string[];
+  serviceGroupNames: string[];
   childrensTabContent: string;
   childrensTabImageUrl: string;
   subtitle: string;
+  serviceDescriptions: Object;
 
   displayedColumns: string[] = ['date', 'title', 'book', 'who', 'listen'];
   dataSource: MatTableDataSource<Service>;
 
+  @ViewChild(MatPaginator) paginator: MatPaginator;
+
   constructor(
     private router: Router,
     private route: ActivatedRoute,
+    private cdr: ChangeDetectorRef
   ) {
     this.router.routeReuseStrategy.shouldReuseRoute = () => false;
     this.servicesByGroupRepo = new ServicesRepo();
@@ -36,21 +39,28 @@ export class ServicesComponent implements OnInit {
   ngOnInit() {
     this.serviceGroupName = this.route.snapshot.paramMap.get('type');
     if (this.serviceGroupName !== undefined && this.serviceGroupName !== null && this.serviceGroupName !== "") {
-      this.servicesByGroup = this.servicesByGroupRepo.getService(this.serviceGroupName);
+      this.servicesByGroup = this.servicesByGroupRepo.getService();
     }
 
-    this.serviceGroupsNames = this.servicesByGroupRepo.getServiceGroupNames();
-    this.serviceGroups = this.servicesByGroupRepo.getServiceGroupNamesAndDescriptions();
-    this.dataSource = new MatTableDataSource(this.servicesByGroup);
+    this.serviceDescriptions = this.servicesByGroupRepo.getServiceDescriptions();
+    this.serviceGroupNames = Object.keys(this.serviceDescriptions);
+    
+    this.dataSource = new MatTableDataSource<Service>(this.servicesByGroup);
+    // this.cdr.detectChanges();
+    this.dataSource.paginator = this.paginator;
 
     this.updateChildren("JAM");
   }
+
+  ngAfterViewInit() {
+    this.dataSource.paginator = this.paginator
+}
 
   applyFilter(filterValue: string) {
     this.dataSource.filter = filterValue.trim().toLowerCase();
   }
 
-  updateChildren(title){
+  updateChildren(title) {
     if (title === 'JAM') {
       this.childrensTabImageUrl = "assets/img/Jam.jpg";
       this.childrensTabContent = `We aim to inspire our 4-7s to love and know God. We do a lots of activities each Sunday morning to make sure all the children have a variety of ways of hearing the message that God loves them and they should love him too.`;
@@ -61,7 +71,5 @@ export class ServicesComponent implements OnInit {
       this.childrensTabContent = `Activities are designed to be thought provoking and challenging – and fun!`;
       this.subtitle = `7 - 11 year olds`;
     }
-    
   }
-
 }

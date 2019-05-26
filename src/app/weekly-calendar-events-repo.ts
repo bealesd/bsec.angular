@@ -19,12 +19,30 @@ export class WeeklyCalendarEventsRepo {
     );
 
     this.events.push(
+      { name: "	Afternoon Worship", day: "Sunday", timeStart: new Time(16, 0), timeEnd:new Time(17, 30) }
+    );
+
+    this.events.push(
       { name: "Busy Bees", day: "Tuesday", timeStart: new Time(10, 0), timeEnd: new Time(11, 30) }
     );
 
     this.events.push(
-      { name: "	Growth Groups", day: "Tuesday", timeStart:new Time(19, 30), timeEnd: new Time(0, 0) }
+      { name: "	Growth Groups", day: "Tuesday", timeStart:new Time(20, 0), timeEnd: new Time(0, 0) }
     );
+
+    this.events.push(
+      { name: "	Growth Groups", day: "Wenesday", timeStart:new Time(19, 30), timeEnd: new Time(0, 0) }
+    );
+
+    this.events.push(
+      { name: "	Boing", day: "Thursday", timeStart:new Time(18, 15), timeEnd: new Time(19, 30) }
+    );
+
+    this.events.push(
+      { name: "	Chili", day: "Thursday", timeStart:new Time(20, 0), timeEnd: new Time(21, 30) }
+    );
+
+
 
   }
 }

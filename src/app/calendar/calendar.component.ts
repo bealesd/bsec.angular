@@ -12,7 +12,7 @@ export class CalendarComponent implements OnInit {
   events: WeeklyCalendarEvent[];
   displayedColumns: string[] = ['day','timeStart', 'timeEnd', 'name'];
   dataSource: MatTableDataSource<WeeklyCalendarEvent>;
-
+  
   constructor() {
    }
 

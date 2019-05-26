@@ -1,4 +1,5 @@
 import { Component, Input, ViewChild, ElementRef } from '@angular/core';
+import './extensions'
 
 @Component({
   selector: 'app-root',

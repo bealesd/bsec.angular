@@ -4,6 +4,7 @@ import { WhatsOnComponent } from './whats-on/whats-on.component';
 import { ServicesComponent } from './services/services.component';
 import { PreSchoolComponent } from './pre-school/pre-school.component';
 import { YouthClubComponent } from './youth-club/youth-club.component';
+import { UpcomingEventsComponent } from './upcoming-events/upcoming-events.component';
 import { HomeGroupsComponent } from './home-groups/home-groups.component';
 import { HomeComponent } from './home/home.component';
 import { CalendarComponent } from './calendar/calendar.component';
@@ -20,6 +21,7 @@ const routes: Routes = [
   { path: 'event/Pre School', component: PreSchoolComponent },
   { path: 'event/Youth Club', component: YouthClubComponent },
   { path: 'event/Home Groups', component: HomeGroupsComponent },
+  { path: 'event/Upcoming', component: UpcomingEventsComponent },
   { path: 'calendar', component: CalendarComponent },
   { path: 'ourLocation', component: OurLocationComponent },
   { path: 'contactUs', component: ContactUsComponent },

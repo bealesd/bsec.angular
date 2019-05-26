@@ -27,18 +27,6 @@ mat-list-item.selected {
     font-size: 16px;
   }
 
-@media only screen and (min-width: 500px){
-  #whatsOnDiv {
-    padding: 0px 25% 0px 25%;
-  }
-}
-
-@media only screen and (max-width: 499px){
-  #whatsOnDiv {
-    padding: 0px 0px 0px 0px;
-  }
-}
-
-#whatsOnDiv {
+#divWithMargin {
   font-family: Avenir-Book, Helvetica Neue, Helvetica, Arial;
 }

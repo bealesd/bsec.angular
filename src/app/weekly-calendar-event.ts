@@ -5,4 +5,5 @@ export class WeeklyCalendarEvent {
     timeStart: Time;
     timeEnd: Time;
     day: string;
+    
   }
