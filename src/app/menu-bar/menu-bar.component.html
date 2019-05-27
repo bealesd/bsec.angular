@@ -28,9 +28,6 @@
 
     <button mat-menu-item [routerLink]="['/event/Youth Club']">Youth Clubs</button>
 
-  
-
-
   </mat-menu>
 
 
@@ -45,11 +42,11 @@
   <!--#endregion -->
 
   <!--#region Resources   -->
-  <button mat-button [matMenuTriggerFor]="resources">Resources</button>
+  <!-- <button mat-button [matMenuTriggerFor]="resources">Resources</button>
   <mat-menu #resources="matMenu">
     <button mat-menu-item>Subscribe</button>
     <button mat-menu-item>Audio Archive</button>
-  </mat-menu>
+  </mat-menu> -->
   <!--#endregion -->
 </div>
 
@@ -63,22 +60,21 @@
     <mat-icon>menu</mat-icon>
   </button>
   <mat-menu #all="matMenu">
-    <button mat-menu-item>Our Vision</button>
-    <button mat-menu-item class="border-bottom">Who We Are</button>
-
-    <button mat-menu-item>Events</button>
-    <button mat-menu-item>
-      <a routerLink="/whatsOn">This Week</a>
-    </button>
-
-    <button mat-menu-item>Adults</button>
-    <button mat-menu-item class="border-bottom">Children</button>
-
-    <button mat-menu-item>Our Location</button>
-    <button mat-menu-item class="border-bottom">Contact Information</button>
-
-    <button mat-menu-item>Subscribe</button>
-    <button mat-menu-item>Audio Archive</button>
+  <button mat-menu-item (click)="onWelcomeLinkClick(1)">Our Vision</button>
+  <button mat-menu-item (click)="onWelcomeLinkClick(2)">Who We Are</button>
+  <mat-divider></mat-divider>
+  <button mat-menu-item [routerLink]="['/event/Calendar']">Weekly Events</button>
+  <button mat-menu-item [routerLink]="['/event/Upcoming']">Special Events</button>
+  <mat-divider></mat-divider>
+  <button mat-menu-item [routerLink]="['/event/Home Groups']">Home Groups</button>
+  <button mat-menu-item [routerLink]="['/event/Pre School']">Todler Group</button>
+  <button mat-menu-item [routerLink]="['/event/Services']">Services</button>
+  <button mat-menu-item [routerLink]="['/event/services/adults']">Adults</button>
+  <button mat-menu-item [routerLink]="['/event/services/kids']">Kids</button>
+  <button mat-menu-item [routerLink]="['/event/Youth Club']">Youth Clubs</button>
+  <mat-divider></mat-divider>
+  <button mat-menu-item [routerLink]="['/ourLocation']">Our Location</button>
+  <button mat-menu-item [routerLink]="['/contactUs']">Contact Us</button>
   </mat-menu>
 
   <!--#endregion -->

@@ -3,6 +3,8 @@ import { NgModule } from '@angular/core';
 
 import { AppComponent } from './app.component';
 
+import { FlexLayoutModule } from '@angular/flex-layout';
+
 import { WhatsOnComponent } from './whats-on/whats-on.component';
 import { AppRoutingModule } from './app-routing.module';
 import { ServicesComponent } from './services/services.component';
@@ -16,9 +18,8 @@ import { OurLocationComponent } from './our-location/our-location.component';
 import { ContactUsComponent } from './contact-us/contact-us.component';
 import { UpcomingEventsComponent } from './upcoming-events/upcoming-events.component'
 
-// import { FlexLayoutModule } from '@angular/flex-layout';
-
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import {DragDropModule} from '@angular/cdk/drag-drop';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {
   MatAutocompleteModule,
@@ -59,8 +60,6 @@ import {
 } from '@angular/material';
 
 
-
-
 @NgModule({
   declarations: [
     AppComponent,
@@ -77,6 +76,8 @@ import {
     UpcomingEventsComponent,
   ],
   imports: [
+    FlexLayoutModule,
+    DragDropModule,
     ReactiveFormsModule,
     FormsModule,
     BrowserModule,

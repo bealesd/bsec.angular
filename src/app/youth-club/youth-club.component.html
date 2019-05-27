@@ -1,5 +1,98 @@
 <div class="divWithMargin">
+  <h1 cdkDrag>
+    Youth Club
+  </h1>
+  <!-- 
+  <nav mat-tab-nav-bar [backgroundColor]="background">
+    <a mat-tab-link
+    (click)="test($event,'boing')"
+       [active]="activeLink == boing">
+        Boing
+      </a>
+
+      <a mat-tab-link
+      (click)="test($event,'chill')"
+      [active]="activeLink == chill">
+       Chill
+     </a>
+
+  </nav> -->
+
+  <!-- (click)="activeLink = boing" -->
+
+
+  <mat-tab-group>
+    <mat-tab>
+      <ng-template mat-tab-label>
+        Boing
+      </ng-template>
+
+      <div class="container" fxLayout="row" fxLayout.xs="column" fxLayoutWrap fxLayoutGap="5%" fxLayoutAlign="center">
+        <div fxFlex="40%">
+          <img mat-card-image class="img" src="assets/img/boing-400x400.png">
+        </div>
+        <div fxFlex="55%">
+          <p class="center">6:15 pm – 7:30 pm (in term time)</p>
+        </div>
+      </div>
+
+      <mat-list>
+        <mat-list-item>
+          <mat-icon mat-list-icon>done</mat-icon>
+          <p>Weekly youth club for school years 3 to 6.</p>
+        </mat-list-item>
+        <mat-list-item>
+          <mat-icon mat-list-icon>done</mat-icon>
+          <p> We have games, crafts, quizzes stories, loads of fun and it’s all free!</p>
+        </mat-list-item>
+        <mat-list-item>
+          <mat-icon mat-list-icon>done</mat-icon>
+          <p>Please come with your children the first time you bring them, so that we can get them properly registered.
+          </p>
+        </mat-list-item>
+        <mat-list-item>
+          <mat-icon mat-list-icon>done</mat-icon>
+          <p>When coming to pick your children up do come and have coffee while you wait from 7.15 onwards.</p>
+        </mat-list-item>
+      </mat-list>
+    </mat-tab>
+
+
+
+    <mat-tab>
+      <ng-template mat-tab-label>
+        Chill
+      </ng-template>
+
+      <div class="container" fxLayout="row" fxLayout.xs="column" fxLayoutWrap fxLayoutGap="5%" fxLayoutAlign="center">
+      <div fxFlex="40%">
+        <img mat-card-image class="img" src="assets/img/Chi11+1024x1024-400x400.png">
+      </div>
+      <div fxFlex="55%">
+        <p class="center">8:00 pm – 9:30 pm (in term time)</p>
+      </div>
+    </div>
+
+      <mat-list>
+        <mat-list-item>
+          <mat-icon mat-list-icon>done</mat-icon>
+          <p>Weekly youth club for anyone of secondary school age.</p>
+        </mat-list-item>
+        <mat-list-item>
+          <mat-icon mat-list-icon>done</mat-icon>
+          <p>Come and chill out with friends or make new ones!</p>
+        </mat-list-item>
+        <mat-list-item>
+          <mat-icon mat-list-icon>done</mat-icon>
+          <p>Find out if God is relevant to you..</p>
+        </mat-list-item>
+      </mat-list>
+
+    </mat-tab>
+  </mat-tab-group>
+
   <p>
-  youth-club works!
-</p>
+    If you have any questions, call Aaron 07455 868 998 or use the form below to email boing@bsec.org.uk
+  </p>
+
 </div>
