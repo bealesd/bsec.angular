@@ -11,5 +11,4 @@ export class UpcomingEventsComponent implements OnInit {
 
   ngOnInit() {
   }
-
 }

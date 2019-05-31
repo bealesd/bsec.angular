@@ -10,6 +10,8 @@ import { HomeComponent } from './home/home.component';
 import { CalendarComponent } from './calendar/calendar.component';
 import { OurLocationComponent } from './our-location/our-location.component';
 import { ContactUsComponent } from './contact-us/contact-us.component';
+import { ServiceAudioComponent   } from './service-audio/service-audio.component';
+
 
 const routes: Routes = [
   { path: 'home', component: HomeComponent },
@@ -25,6 +27,7 @@ const routes: Routes = [
   { path: 'event/Calendar', component: CalendarComponent },
   { path: 'ourLocation', component: OurLocationComponent },
   { path: 'contactUs', component: ContactUsComponent },
+  { path: 'serviceAudio', component: ServiceAudioComponent },
   
 ];
 

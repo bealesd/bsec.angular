@@ -3,5 +3,5 @@ export class Service {
     book: string;
     who: string;
     date: Date;
-    listen: string;
+    audioId: string;
   }

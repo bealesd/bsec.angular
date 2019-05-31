@@ -62,11 +62,14 @@
           <td mat-cell *matCellDef="let element"> {{element.who}} </td>
         </ng-container>
 
-        <ng-container matColumnDef="listen">
+        <ng-container matColumnDef="audioId">
           <th mat-header-cell *matHeaderCellDef>
-              <mat-icon>play_arrow</mat-icon> 
+            <mat-icon>play_arrow</mat-icon>
           </th>
-          <td mat-cell *matCellDef="let element"> {{element.listen}} </td>
+          <td mat-cell *matCellDef="let element">
+            <a matLine (click)="loadServiceAudio(element)">listen</a>
+          </td>
+
         </ng-container>
 
         <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>

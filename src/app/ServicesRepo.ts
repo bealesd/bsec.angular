@@ -11,16 +11,16 @@ export class ServicesRepo {
   private loadServices() {
     this.services = [];
     this.services.push(
-      { book: "james", title: "feeding", who: "max", date: new Date(), listen: '' }
+      { book: "james", title: "feeding", who: "max", date: new Date(), audioId: 'one' }
     );
     this.services.push(
-      { book: "james", title: "feeding", who: "max", date: new Date(), listen: '' }
+      { book: "james", title: "feeding", who: "max", date: new Date(), audioId: 'two' }
     );
     this.services.push(
-      { book: "james", title: "feeding", who: "max", date: new Date(), listen: '' }
+      { book: "james", title: "feeding", who: "max", date: new Date(), audioId: 'three' }
     );
     this.services.push(
-      { book: "john", title: "cure the lame", who: "mike", date: new Date(), listen: '' }
+      { book: "john", title: "cure the lame", who: "mike", date: new Date(), audioId: 'four' }
     );
   }
 

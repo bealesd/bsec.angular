@@ -6,6 +6,8 @@ import { ServicesRepo } from '../ServicesRepo';
 import { MatPaginator, MatTableDataSource } from '@angular/material';
 import { Service } from '../Service';
 
+import { Data } from "../../providers/data";
+
 @Component({
   selector: 'app-services',
   templateUrl: './services.component.html',
@@ -22,12 +24,13 @@ export class ServicesComponent implements OnInit {
   subtitle: string;
   serviceDescriptions: Object;
 
-  displayedColumns: string[] = ['date', 'title', 'book', 'who', 'listen'];
+  displayedColumns: string[] = ['date', 'title', 'book', 'who', 'audioId'];
   dataSource: MatTableDataSource<Service>;
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
 
   constructor(
+    private data: Data,
     private router: Router,
     private route: ActivatedRoute,
     private cdr: ChangeDetectorRef
@@ -72,4 +75,17 @@ export class ServicesComponent implements OnInit {
       this.subtitle = `7 - 11 year olds`;
     }
   }
+
+  loadServiceAudio(service){
+    this.data.storage = {
+      "firstname": "Nic",
+      "lastname": "Raboy",
+      "address": {
+          "city": "San Francisco",
+          "state": "California"
+      }
+  }
+  this.router.navigate(["serviceAudio"]);
+  }
+
 }

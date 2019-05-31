@@ -17,10 +17,14 @@ import { CalendarComponent } from './calendar/calendar.component';
 import { OurLocationComponent } from './our-location/our-location.component';
 import { ContactUsComponent } from './contact-us/contact-us.component';
 import { UpcomingEventsComponent } from './upcoming-events/upcoming-events.component'
+import { ServiceAudioComponent   } from './service-audio/service-audio.component';
 
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {DragDropModule} from '@angular/cdk/drag-drop';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+
+import { Data } from "../providers/data";
+
 import {
   MatAutocompleteModule,
   MatBadgeModule,
@@ -74,6 +78,7 @@ import {
     OurLocationComponent,
     ContactUsComponent,
     UpcomingEventsComponent,
+    ServiceAudioComponent
   ],
   imports: [
     FlexLayoutModule,
@@ -120,7 +125,7 @@ import {
     MatTreeModule,
   ],
 
-  providers: [],
+  providers: [Data],
   bootstrap: [AppComponent]
 })
 
