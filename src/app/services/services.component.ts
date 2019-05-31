@@ -77,15 +77,8 @@ export class ServicesComponent implements OnInit {
   }
 
   loadServiceAudio(service){
-    this.data.storage = {
-      "firstname": "Nic",
-      "lastname": "Raboy",
-      "address": {
-          "city": "San Francisco",
-          "state": "California"
-      }
-  }
-  this.router.navigate(["serviceAudio"]);
+    this.data.storage = service;
+    this.router.navigate(["serviceAudio"]);
   }
 
 }

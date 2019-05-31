@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {AfterViewInit,  Component, OnInit, ViewChild,  } from '@angular/core';
 import { Service } from '../Service';
 
 import { Data } from "../../providers/data";
@@ -9,17 +9,22 @@ import { Data } from "../../providers/data";
   styleUrls: ['./service-audio.component.css']
 })
 export class ServiceAudioComponent implements OnInit {
+  audioSrcElement: any;
 
   constructor(private data: Data) {
-    console.log(JSON.stringify(this.data.storage));
    }
 
   ngOnInit() {
-    // this.loadAudio(service);
   }
 
-  loadAudio(service: Service){
-    let elem = document.querySelector('#src');
-    elem.src=  `../../../assets/audio/${service.audioId}.mp3`;
+  ngAfterViewInit(){
+    this.audioSrcElement = document.getElementById('src');
+    if (this.data.storage !== null && this.data.storage !== undefined) {
+      this.loadAudio(this.data.storage);
+    }
+  }
+
+  loadAudio(service: Object){
+    this.audioSrcElement.src=  `../../../assets/audio/${service['audioId']}.mp3`;
   }
 }
