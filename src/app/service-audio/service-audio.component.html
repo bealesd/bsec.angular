@@ -7,9 +7,13 @@
 
   <div *ngIf="data.storage">
 
-    <h3>{{data.storage.title}} by {{data.storage.who}}</h3>
-    <p>{{data.storage.book}}</p>
-    <p>{{data.storage.date}}</p>
+    <h3>{{data.storage.title}}</h3>  
+
+    <p><mat-icon>person</mat-icon> {{data.storage.who}}</p>
+
+    <p><mat-icon>edit</mat-icon> {{data.storage.book}}</p>
+
+    <p><mat-icon>calendar_today</mat-icon>{{data.storage.date | date:'MM/dd/yyyy'}}</p>
 
     <audio audio id="mp3" controls>
       <source id="src" type="audio/mpeg">

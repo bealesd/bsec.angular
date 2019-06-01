@@ -1,3 +1,0 @@
-ng build --prod --base-href "https://bealesd.github.io/bsec.angular"
-update index base hrf to /
-copy index to 404
