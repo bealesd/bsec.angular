@@ -11,7 +11,7 @@ import { Data } from "../../providers/data";
 export class ServiceAudioComponent implements OnInit {
   audioSrcElement: any;
 
-  constructor(private data: Data) {
+  constructor(public data: Data) {
    }
 
   ngOnInit() {
