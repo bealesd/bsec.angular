@@ -1,7 +1,6 @@
 import { Component, OnInit, ViewChild, Input } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Router } from '@angular/router';
-import { Observable, Subject } from 'rxjs';
 
 import { ServicesRepo } from '../ServicesRepo';
 import { MatPaginator, MatTableDataSource } from '@angular/material';
@@ -15,9 +14,10 @@ import { Data } from "../../providers/data";
   styleUrls: ['./services.component.css']
 })
 
-
 export class ServicesComponent implements OnInit {
-  @Input() services: Service[];;
+  // @Input()
+  services: Service[];
+  servicesOriginal: Service[];
   editMode: boolean;
   servicesByGroup: Service[];
   serviceTypes: string[];
@@ -25,9 +25,9 @@ export class ServicesComponent implements OnInit {
   childrensTabImageUrl: string;
   subtitle: string;
   serviceDescriptions: Object;
-  mode: string;
+  mode: string
 
-  displayedColumns: string[] = ['date', 'title', 'book', 'who', 'audioId'];
+  displayedColumns: string[] = ['date', 'title', 'book', 'who', 'audioId', 'save'];
   dataSource: MatTableDataSource<Service>;
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
@@ -47,17 +47,7 @@ export class ServicesComponent implements OnInit {
     const routeId = this.route.snapshot.paramMap.get('type');
 
     if (routeId.toLowerCase() === "adults") {
-      this.servicesByGroupRepo.getServices()
-        .subscribe(services => {
-          this.services = services;
-          this.dataSource = new MatTableDataSource<Service>(services);
-          this.dataSource.paginator = this.paginator;
-          console.log(this.services);
-        });
-
-      // this.servicesByGroup = this.servicesByGroupRepo.getService();
-      // this.dataSource = new MatTableDataSource<Service>(this.services);
-      // this.dataSource.paginator = this.paginator;
+      this.getServicesAndUpdateTable();
       this.mode = "adults";
     }
     else if (routeId.toLowerCase() === "kids") {
@@ -102,9 +92,32 @@ export class ServicesComponent implements OnInit {
   }
 
   addRow() {
-    this.servicesByGroupRepo.addService(
-      { book: "myBook", title: "test", who: "dave", date: new Date(), audioId: 'one' }
-    ).subscribe(service => this.services.push(service));
+    this.services.push(
+      { id: "", book: "", title: "", who: "", date: new Date(), audioId: '' }
+    );
+    this.dataSource = new MatTableDataSource<Service>(this.services);
+    this.dataSource.paginator = this.paginator;
+  }
 
+  saveRow(service) {
+    this.servicesByGroupRepo.addService(service)
+    .subscribe(() => this.getServicesAndUpdateTable())
+  }
+
+  getServicesAndUpdateTable() {
+    this.servicesByGroupRepo.getServices()
+      .subscribe(services => {
+        if (services === null) {
+          this.services = [];
+          this.services.push(
+            { id: "", book: "", title: "", who: "", date: new Date(), audioId: '' }
+          );
+        }
+        else {
+          this.services = services;
+        }
+        this.dataSource = new MatTableDataSource<Service>(this.services);
+        this.dataSource.paginator = this.paginator;
+      });
   }
 }

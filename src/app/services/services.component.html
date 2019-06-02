@@ -31,6 +31,7 @@
 
     <button *ngIf="editMode" mat-raised-button (click)="addRow()">Add row</button>
 
+
     <div class="mat-elevation-z8">
       <table mat-table [dataSource]="dataSource">
 
@@ -39,9 +40,9 @@
             <!-- date   -->
             <mat-icon>calendar_today</mat-icon>
           </th>
-          <td mat-cell *matCellDef="let element"> 
+          <td mat-cell *matCellDef="let element">
             <p *ngIf="!editMode">{{element.date | date:'MM/dd/yyyy'}}</p>
-             <input *ngIf="editMode" type="date" [ngModel] ="element.date | date:'yyyy-MM-dd'">
+            <input *ngIf="editMode" type="date" [ngModel]="element.date | date:'yyyy-MM-dd'">
           </td>
         </ng-container>
 
@@ -51,9 +52,9 @@
             <mat-icon>library_books</mat-icon>
           </th>
           <td mat-cell *matCellDef="let element">
-              <p *ngIf="!editMode">{{element.title}}</p>
-              <input *ngIf="editMode" [(ngModel)]="element.title" placeholder="{{element.title}}"/>
-             </td>
+            <p *ngIf="!editMode">{{element.title}}</p>
+            <input *ngIf="editMode" [(ngModel)]="element.title" placeholder="{{element.title}}" />
+          </td>
         </ng-container>
 
         <ng-container matColumnDef="book">
@@ -61,9 +62,9 @@
             <mat-icon>edit</mat-icon>
           </th>
           <td mat-cell *matCellDef="let element">
-             <p *ngIf="!editMode">{{element.book}}</p>
-             <input *ngIf="editMode" [(ngModel)]="element.book" placeholder="{{element.book}}"/>
-            </td>
+            <p *ngIf="!editMode">{{element.book}}</p>
+            <input *ngIf="editMode" [(ngModel)]="element.book" placeholder="{{element.book}}" />
+          </td>
         </ng-container>
 
         <ng-container matColumnDef="who">
@@ -71,9 +72,9 @@
             <mat-icon>person</mat-icon>
           </th>
           <td mat-cell *matCellDef="let element">
-             <p *ngIf="!editMode">{{element.who}}</p>
-             <input *ngIf="editMode" [(ngModel)]="element.who" placeholder="{{element.who}}"/>
-             </td>
+            <p *ngIf="!editMode">{{element.who}}</p>
+            <input *ngIf="editMode" [(ngModel)]="element.who" placeholder="{{element.who}}" />
+          </td>
         </ng-container>
 
         <ng-container matColumnDef="audioId">
@@ -83,7 +84,15 @@
           <td mat-cell *matCellDef="let element">
             <a matLine (click)="loadServiceAudio(element)">listen</a>
           </td>
+        </ng-container>
 
+        <ng-container matColumnDef="save">
+          <th mat-header-cell *matHeaderCellDef></th>
+          <td mat-cell *matCellDef="let element">
+            <button *ngIf="editMode" mat-raised-button (click)="saveRow(element)">
+              <mat-icon>save</mat-icon>
+            </button>
+          </td>
         </ng-container>
 
         <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>

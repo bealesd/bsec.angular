@@ -1,5 +1,4 @@
 import { Service } from './Service';
-import { stringify } from 'querystring';
 
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
@@ -17,23 +16,6 @@ export class ServicesRepo {
   private serviceUrl = 'http://localhost:8081/';
 
   constructor(private http: HttpClient) {
-    this.loadServices();
-  }
-
-  private loadServices() {
-    this.services = [];
-    this.services.push(
-      { book: "james", title: "feeding", who: "max", date: new Date(), audioId: 'one' }
-    );
-    this.services.push(
-      { book: "james", title: "feeding", who: "max", date: new Date(), audioId: 'two' }
-    );
-    this.services.push(
-      { book: "james", title: "feeding", who: "max", date: new Date(), audioId: 'three' }
-    );
-    this.services.push(
-      { book: "john", title: "cure the lame", who: "mike", date: new Date(), audioId: 'four' }
-    );
   }
 
   getServices(): Observable<Service[]> {
@@ -44,6 +26,7 @@ export class ServicesRepo {
   }
 
   addService(service: Service): Observable<Service> {
+    console.log(service);
     return this.http.post<Service>(this.serviceUrl, service, httpOptions).pipe(
       tap(_ => console.log('added service'))
     );
