@@ -1,6 +1,7 @@
-import { Component, OnInit, ViewChild, ChangeDetectorRef  } from '@angular/core';
+import { Component, OnInit, ViewChild, Input } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Router } from '@angular/router';
+import { Observable, Subject } from 'rxjs';
 
 import { ServicesRepo } from '../ServicesRepo';
 import { MatPaginator, MatTableDataSource } from '@angular/material';
@@ -14,15 +15,17 @@ import { Data } from "../../providers/data";
   styleUrls: ['./services.component.css']
 })
 
+
 export class ServicesComponent implements OnInit {
-  servicesByGroupRepo: ServicesRepo;
-  serviceGroupName: string;
+  @Input() services: Service[];;
+  editMode: boolean;
   servicesByGroup: Service[];
-  serviceGroupNames: string[];
+  serviceTypes: string[];
   childrensTabContent: string;
   childrensTabImageUrl: string;
   subtitle: string;
   serviceDescriptions: Object;
+  mode: string;
 
   displayedColumns: string[] = ['date', 'title', 'book', 'who', 'audioId'];
   dataSource: MatTableDataSource<Service>;
@@ -33,34 +36,51 @@ export class ServicesComponent implements OnInit {
     private data: Data,
     private router: Router,
     private route: ActivatedRoute,
-    private cdr: ChangeDetectorRef
+    private servicesByGroupRepo: ServicesRepo
   ) {
     this.router.routeReuseStrategy.shouldReuseRoute = () => false;
-    this.servicesByGroupRepo = new ServicesRepo();
   }
 
   ngOnInit() {
-    this.serviceGroupName = this.route.snapshot.paramMap.get('type');
-    if (this.serviceGroupName !== undefined && this.serviceGroupName !== null && this.serviceGroupName !== "") {
-      this.servicesByGroup = this.servicesByGroupRepo.getService();
+    this.editMode = true;
+
+    const routeId = this.route.snapshot.paramMap.get('type');
+
+    if (routeId.toLowerCase() === "adults") {
+      this.servicesByGroupRepo.getServices()
+        .subscribe(services => {
+          this.services = services;
+          this.dataSource = new MatTableDataSource<Service>(services);
+          this.dataSource.paginator = this.paginator;
+          console.log(this.services);
+        });
+
+      // this.servicesByGroup = this.servicesByGroupRepo.getService();
+      // this.dataSource = new MatTableDataSource<Service>(this.services);
+      // this.dataSource.paginator = this.paginator;
+      this.mode = "adults";
     }
-
-    this.serviceDescriptions = this.servicesByGroupRepo.getServiceDescriptions();
-    this.serviceGroupNames = Object.keys(this.serviceDescriptions);
-    
-    this.dataSource = new MatTableDataSource<Service>(this.servicesByGroup);
-    // this.cdr.detectChanges();
-    this.dataSource.paginator = this.paginator;
-
-    this.updateChildren("JAM");
+    else if (routeId.toLowerCase() === "kids") {
+      this.updateChildren("JAM");
+      this.mode = "kids";
+    }
+    else if (routeId.toLowerCase() === "overview") {
+      this.serviceDescriptions = this.servicesByGroupRepo.getServiceDescriptions();
+      this.serviceTypes = Object.keys(this.serviceDescriptions);
+      this.mode = "overview";
+    }
   }
 
   ngAfterViewInit() {
-    this.dataSource.paginator = this.paginator
-}
+    // if (this.mode === "adults") {
+    //   this.dataSource.paginator = this.paginator
+    // }
+  }
 
   applyFilter(filterValue: string) {
-    this.dataSource.filter = filterValue.trim().toLowerCase();
+    // if (this.mode === "adults") {
+    //   this.dataSource.filter = filterValue.trim().toLowerCase();
+    // }
   }
 
   updateChildren(title) {
@@ -76,9 +96,15 @@ export class ServicesComponent implements OnInit {
     }
   }
 
-  loadServiceAudio(service){
+  loadServiceAudio(service) {
     this.data.storage = service;
     this.router.navigate(["serviceAudio"]);
   }
 
+  addRow() {
+    this.servicesByGroupRepo.addService(
+      { book: "myBook", title: "test", who: "dave", date: new Date(), audioId: 'one' }
+    ).subscribe(service => this.services.push(service));
+
+  }
 }

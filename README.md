@@ -27,6 +27,6 @@ Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protrac
 To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
 
 ## How I build
-ng build --prod --base-href "https://bealesd.github.io/bsec.angular"
+ng build --prod --base-href "https://bealesd.github.io/bsec.angular/"
 update index base href to /
 copy index to 404

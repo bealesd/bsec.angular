@@ -1,10 +1,22 @@
 import { Service } from './Service';
 import { stringify } from 'querystring';
 
+import { Injectable } from '@angular/core';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+
+import { Observable, of } from 'rxjs';
+import { catchError, map, tap } from 'rxjs/operators';
+
+const httpOptions = {
+  headers: new HttpHeaders({ 'Content-Type': 'application/json' })
+};
+
+@Injectable({ providedIn: 'root' })
 export class ServicesRepo {
   services: Service[];
+  private serviceUrl = 'http://localhost:8081/';
 
-  constructor() {
+  constructor(private http: HttpClient) {
     this.loadServices();
   }
 
@@ -24,6 +36,19 @@ export class ServicesRepo {
     );
   }
 
+  getServices(): Observable<Service[]> {
+    return this.http.get<Service[]>(this.serviceUrl)
+      .pipe(
+        tap(_ => console.log('fetched services'))
+      );
+  }
+
+  addService(service: Service): Observable<Service> {
+    return this.http.post<Service>(this.serviceUrl, service, httpOptions).pipe(
+      tap(_ => console.log('added service'))
+    );
+  }
+  
   getService() {
     return this.services;
   }
@@ -49,6 +74,4 @@ export class ServicesRepo {
 
     return serviceDescriptions;
   };
-
-
 }

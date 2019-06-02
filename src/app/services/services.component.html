@@ -4,30 +4,32 @@
     Services
   </h1>
 
-  <div *ngIf="!servicesByGroup">
-    <div *ngFor="let groupName of serviceGroupNames">
+  <div *ngIf="mode === 'overview'">
+    <div *ngFor="let serviceType of serviceTypes">
       <mat-accordion class="example-headers-align">
         <mat-expansion-panel expanded="true">
           <mat-expansion-panel-header>
             <mat-panel-title>
               <a matLine
-                routerLink="/event/services/{{groupName.toLowerCase()}}">{{groupName.toFirstLetterUpperCase()}}</a>
+                routerLink="/event/Services/{{serviceType.toLowerCase()}}">{{serviceType.toFirstLetterUpperCase()}}</a>
             </mat-panel-title>
           </mat-expansion-panel-header>
 
-          <p *ngIf="serviceDescriptions[groupName]" [innerHTML]="serviceDescriptions[groupName]"></p>
+          <p *ngIf="serviceDescriptions[serviceType]" [innerHTML]="serviceDescriptions[serviceType]"></p>
 
         </mat-expansion-panel>
       </mat-accordion>
     </div>
   </div>
 
-  <div *ngIf="servicesByGroup && serviceGroupName.toLowerCase() === 'adults'">
-    <h2>{{serviceGroupName.toFirstLetterUpperCase()}}</h2>
+  <div *ngIf="mode === 'adults'">
+    <h2>{{mode.toFirstLetterUpperCase()}}</h2>
 
     <mat-form-field>
       <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
     </mat-form-field>
+
+    <button *ngIf="editMode" mat-raised-button (click)="addRow()">Add row</button>
 
     <div class="mat-elevation-z8">
       <table mat-table [dataSource]="dataSource">
@@ -37,7 +39,10 @@
             <!-- date   -->
             <mat-icon>calendar_today</mat-icon>
           </th>
-          <td mat-cell *matCellDef="let element"> {{element.date | date:'MM/dd/yyyy'}} </td>
+          <td mat-cell *matCellDef="let element"> 
+            <p *ngIf="!editMode">{{element.date | date:'MM/dd/yyyy'}}</p>
+             <input *ngIf="editMode" type="date" [ngModel] ="element.date | date:'yyyy-MM-dd'">
+          </td>
         </ng-container>
 
         <ng-container matColumnDef="title">
@@ -45,21 +50,30 @@
             <!-- title -->
             <mat-icon>library_books</mat-icon>
           </th>
-          <td mat-cell *matCellDef="let element"> {{element.title}} </td>
+          <td mat-cell *matCellDef="let element">
+              <p *ngIf="!editMode">{{element.title}}</p>
+              <input *ngIf="editMode" [(ngModel)]="element.title" placeholder="{{element.title}}"/>
+             </td>
         </ng-container>
 
         <ng-container matColumnDef="book">
           <th mat-header-cell *matHeaderCellDef>
             <mat-icon>edit</mat-icon>
           </th>
-          <td mat-cell *matCellDef="let element"> {{element.book}} </td>
+          <td mat-cell *matCellDef="let element">
+             <p *ngIf="!editMode">{{element.book}}</p>
+             <input *ngIf="editMode" [(ngModel)]="element.book" placeholder="{{element.book}}"/>
+            </td>
         </ng-container>
 
         <ng-container matColumnDef="who">
           <th mat-header-cell *matHeaderCellDef>
             <mat-icon>person</mat-icon>
           </th>
-          <td mat-cell *matCellDef="let element"> {{element.who}} </td>
+          <td mat-cell *matCellDef="let element">
+             <p *ngIf="!editMode">{{element.who}}</p>
+             <input *ngIf="editMode" [(ngModel)]="element.who" placeholder="{{element.who}}"/>
+             </td>
         </ng-container>
 
         <ng-container matColumnDef="audioId">
@@ -80,8 +94,8 @@
     </div>
   </div>
 
-  <div *ngIf="servicesByGroup && serviceGroupName.toLowerCase() === 'kids'">
-    <h2>{{serviceGroupName.toFirstLetterUpperCase()}}</h2>
+  <div *ngIf="mode === 'kids'">
+    <h2>{{mode.toFirstLetterUpperCase()}}</h2>
     <mat-card class="example-card">
       <mat-card-header>
         <div mat-card-avatar class="example-header-image"></div>

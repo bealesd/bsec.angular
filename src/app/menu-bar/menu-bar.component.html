@@ -20,10 +20,10 @@
     <button mat-menu-item [routerLink]="['/event/Home Groups']">Home Groups</button>
     <button mat-menu-item [routerLink]="['/event/Pre School']">Todler Group</button>
 
-    <button mat-menu-item [matMenuTriggerFor]="services" [routerLink]="['/event/Services']">Services</button>
+    <button mat-menu-item [matMenuTriggerFor]="services" [routerLink]="['/event/Services/overview']">Services</button>
     <mat-menu #services="matMenu">
-      <button mat-menu-item [routerLink]="['/event/services/adults']">Adults</button>
-      <button mat-menu-item [routerLink]="['/event/services/kids']">Kids</button>
+      <button mat-menu-item [routerLink]="['/event/Services/adults']">Adults</button>
+      <button mat-menu-item [routerLink]="['/event/Services/kids']">Kids</button>
     </mat-menu>
 
     <button mat-menu-item [routerLink]="['/event/Youth Club']">Youth Clubs</button>
@@ -68,9 +68,9 @@
   <mat-divider></mat-divider>
   <button mat-menu-item [routerLink]="['/event/Home Groups']">Home Groups</button>
   <button mat-menu-item [routerLink]="['/event/Pre School']">Todler Group</button>
-  <button mat-menu-item [routerLink]="['/event/Services']">Services</button>
-  <button mat-menu-item [routerLink]="['/event/services/adults']">Adults</button>
-  <button mat-menu-item [routerLink]="['/event/services/kids']">Kids</button>
+  <button mat-menu-item [routerLink]="['/event/Services/overview']">Services</button>
+  <button mat-menu-item [routerLink]="['/event/Services/adults']">Adults</button>
+  <button mat-menu-item [routerLink]="['/event/Services/kids']">Kids</button>
   <button mat-menu-item [routerLink]="['/event/Youth Club']">Youth Clubs</button>
   <mat-divider></mat-divider>
   <button mat-menu-item [routerLink]="['/ourLocation']">Our Location</button>
