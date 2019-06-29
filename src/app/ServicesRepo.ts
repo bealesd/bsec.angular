@@ -19,21 +19,40 @@ export class ServicesRepo {
   }
 
   getServices(): Observable<Service[]> {
+    console.log('hello from getServices');
     return this.http.get<Service[]>(this.serviceUrl)
       .pipe(
         tap(_ => console.log('fetched services'))
       );
   }
 
-  addService(service: Service): Observable<Service> {
-    console.log(service);
-    return this.http.post<Service>(this.serviceUrl, service, httpOptions).pipe(
-      tap(_ => console.log('added service'))
+  postFile(fileToUpload: File): Observable<String> {
+    console.log('hello from post file');
+    const endpoint = 'http://localhost:8081/tracks';
+    const formData: FormData = new FormData();
+    formData.append('track', fileToUpload, fileToUpload.name);
+    formData.append('name', fileToUpload.name);
+    return this.http.post<String>(endpoint, formData).pipe(
+      tap(_ => console.log('posted audio file'))
     );
   }
-  
-  getService() {
-    return this.services;
+
+  addService(service: Service): Observable<Service> {
+    console.log('calling add service');
+    console.log(service);
+    console.log(this.serviceUrl);
+    return this.http.post<Service>(this.serviceUrl, service, httpOptions).pipe(
+      tap(_ => {
+        if (service.id === "") alert('added service')
+        else alert('updated service')
+      })
+    );
+  }
+
+  deleteService(id: String): Observable<Service> {
+    return this.http.delete<Service>(`${this.serviceUrl}?id=${id}`, httpOptions).pipe(
+      tap(_ => alert('removed service'))
+    );
   }
 
   getServiceDescriptions() {

@@ -6,7 +6,7 @@ import { ServicesRepo } from '../ServicesRepo';
 import { MatPaginator, MatTableDataSource } from '@angular/material';
 import { Service } from '../Service';
 
-import { Data } from "../../providers/data";
+import { ServiceProvider } from "../../providers/serviceProvider";
 
 @Component({
   selector: 'app-services',
@@ -27,13 +27,13 @@ export class ServicesComponent implements OnInit {
   serviceDescriptions: Object;
   mode: string
 
-  displayedColumns: string[] = ['date', 'title', 'book', 'who', 'audioId', 'save'];
+  displayedColumns: string[] = ['date', 'title', 'book', 'who', 'audioId', 'save', 'delete'];
   dataSource: MatTableDataSource<Service>;
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
 
   constructor(
-    private data: Data,
+    private serviceProvider: ServiceProvider,
     private router: Router,
     private route: ActivatedRoute,
     private servicesByGroupRepo: ServicesRepo
@@ -42,7 +42,7 @@ export class ServicesComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.editMode = true;
+    this.editMode = JSON.parse(localStorage.getItem('isEditMode')) as boolean;
 
     const routeId = this.route.snapshot.paramMap.get('type');
 
@@ -61,18 +61,6 @@ export class ServicesComponent implements OnInit {
     }
   }
 
-  ngAfterViewInit() {
-    // if (this.mode === "adults") {
-    //   this.dataSource.paginator = this.paginator
-    // }
-  }
-
-  applyFilter(filterValue: string) {
-    // if (this.mode === "adults") {
-    //   this.dataSource.filter = filterValue.trim().toLowerCase();
-    // }
-  }
-
   updateChildren(title) {
     if (title === 'JAM') {
       this.childrensTabImageUrl = "assets/img/Jam.jpg";
@@ -87,7 +75,8 @@ export class ServicesComponent implements OnInit {
   }
 
   loadServiceAudio(service) {
-    this.data.storage = service;
+    // this.data.storage = service;
+    this.serviceProvider.updateService(service);
     this.router.navigate(["serviceAudio"]);
   }
 
@@ -104,6 +93,14 @@ export class ServicesComponent implements OnInit {
     .subscribe(() => this.getServicesAndUpdateTable())
   }
 
+  deleteRow(service) {
+    //TODO delete orphan audio file
+    console.log('delete row was called');
+    this.servicesByGroupRepo.deleteService(service.id)
+    .subscribe(() => this.getServicesAndUpdateTable())
+  }
+
+
   getServicesAndUpdateTable() {
     this.servicesByGroupRepo.getServices()
       .subscribe(services => {
@@ -114,6 +111,7 @@ export class ServicesComponent implements OnInit {
           );
         }
         else {
+          console.log(services);
           this.services = services;
         }
         this.dataSource = new MatTableDataSource<Service>(this.services);

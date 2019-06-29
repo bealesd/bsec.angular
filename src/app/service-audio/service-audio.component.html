@@ -3,26 +3,32 @@
     Service Audio
   </h1>
 
-  <h3 *ngIf="!data.storage">Audio unavailable.</h3>
+  <h3 *ngIf="audioIdExisits == false">Audio unavailable.</h3>
+  
 
-  <div *ngIf="data.storage">
-
-    <h3>{{data.storage.title}}</h3>  
-
-    <p><mat-icon>person</mat-icon> {{data.storage.who}}</p>
-
-    <p><mat-icon>edit</mat-icon> {{data.storage.book}}</p>
-
-    <p><mat-icon>calendar_today</mat-icon>{{data.storage.date | date:'MM/dd/yyyy'}}</p>
-
-    <audio audio id="mp3" controls>
-      <source id="src" type="audio/mpeg">
-    </audio>
-
+  <div *ngIf="editMode && audioIdExisits === false" class="form-group">
+    <label for="file">Upload audio</label>
+    <input type="file" id="file" (change)="handleFileInput($event.target.files)">
   </div>
-<!-- 
-  <object  data="../../assets/audio/one.mp3" >
-    <param name="src" value="../../Audio/one.mp3"/>
-    </object> -->
+
+
+  <div *ngIf="audioIdExisits == true">
+
+    <h3>{{service.title}}</h3>
+
+    <p>
+      <mat-icon>person</mat-icon> {{service.who}}
+    </p>
+
+    <p>
+      <mat-icon>edit</mat-icon> {{service.book}}
+    </p>
+
+    <p>
+      <mat-icon>calendar_today</mat-icon>{{service.date | date:'MM/dd/yyyy'}}
+    </p>
+
+    <audio id="src" controls></audio>
+  </div>
 
 </div>

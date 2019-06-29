@@ -24,7 +24,7 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {DragDropModule} from '@angular/cdk/drag-drop';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 
-import { Data } from "../providers/data";
+import { ServiceProvider } from "../providers/serviceProvider";
 
 import {
   MatAutocompleteModule,
@@ -127,7 +127,7 @@ import {
     MatTreeModule,
   ],
 
-  providers: [Data],
+  providers: [ServiceProvider],
   bootstrap: [AppComponent]
 })
 

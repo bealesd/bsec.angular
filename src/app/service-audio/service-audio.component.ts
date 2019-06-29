@@ -1,7 +1,12 @@
-import {AfterViewInit,  Component, OnInit, ViewChild,  } from '@angular/core';
+import { AfterViewInit, Component, OnInit, ViewChild, } from '@angular/core';
 import { Service } from '../Service';
 
-import { Data } from "../../providers/data";
+import { ServicesRepo } from '../ServicesRepo';
+
+import {ServiceProvider } from "../../providers/serviceProvider";
+
+import { Inject }  from '@angular/core';
+import { DOCUMENT } from '@angular/common'; 
 
 @Component({
   selector: 'app-service-audio',
@@ -10,21 +15,65 @@ import { Data } from "../../providers/data";
 })
 export class ServiceAudioComponent implements OnInit {
   audioSrcElement: any;
+  fileToUpload: File = null;
+  audioIdExisits = false;
+  service: Service;
+  editMode: boolean;
 
-  constructor(public data: Data) {
-   }
-
-  ngOnInit() {
+  constructor(
+    public serviceProvider: ServiceProvider,
+    private servicesRepo: ServicesRepo,
+    @Inject(DOCUMENT) document) {
+      this.service = this.serviceProvider.getService();
   }
 
-  ngAfterViewInit(){
-    this.audioSrcElement = document.getElementById('src');
-    if (this.data.storage !== null && this.data.storage !== undefined) {
-      this.loadAudio(this.data.storage);
+  ngOnInit() {
+    this.editMode = JSON.parse(localStorage.getItem('isEditMode')) as boolean;
+    if (this.service.audioId !== ''){
+        this.audioIdExisits = true;
     }
   }
 
-  loadAudio(service: Object){
-    this.audioSrcElement.src=  `../../../assets/audio/${service['audioId']}.mp3`;
+  ngAfterViewInit() {
+    if (this.service.audioId.length > 0) {
+      this.audioSrcElement = document.getElementById('src');
+      this.audioErrorListener();
+      this.loadAudio();
+    }
+  }
+
+  loadAudio() {
+    document.getElementById('src').setAttribute('src', `http://localhost:8081/tracks?trackID=${this.service['audioId']}`);
+  }
+
+  audioErrorListener(){
+    document.querySelectorAll("audio")[0].addEventListener('error', function(){
+      alert("Audio file could not be loaded!");
+    });
+  }
+
+  handleFileInput(files: FileList) {
+    this.fileToUpload = files.item(0);
+    this.uploadFileToActivity();
+  }
+
+  uploadFileToActivity() {
+    this.servicesRepo.postFile(this.fileToUpload).subscribe((audioId) => {
+     alert('audio file uploaded');
+      console.log(audioId);
+      let service: Service = {
+        id: this.service.id as string,
+        book: this.service.book as string,
+        title: this.service.title as string,
+        who: this.service.who as string,
+        date: this.service.date as Date,
+        audioId: audioId as string
+      }
+      this.service = service;
+      this.servicesRepo.addService(service).subscribe((res) => {
+        alert('service updated with audio file');
+        this.loadAudio();
+      });
+    });
   }
 }

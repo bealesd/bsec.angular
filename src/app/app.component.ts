@@ -20,6 +20,7 @@ export class AppComponent {
   @ViewChild('script') script: ElementRef;
 
   ngAfterViewInit() {
+    localStorage.setItem('isEditMode', JSON.stringify(true));
   }
 
 }
