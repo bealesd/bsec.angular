@@ -6,6 +6,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable, of } from 'rxjs';
 import { catchError, map, tap } from 'rxjs/operators';
 
+
 const httpOptions = {
   headers: new HttpHeaders({ 'Content-Type': 'application/json' })
 };
@@ -17,6 +18,56 @@ export class ServicesRepo {
 
   constructor(private http: HttpClient) {
   }
+//MP3 Quality Modifier
+  postFile(fileToUpload: File): Observable<String> {
+    console.log('hello from post file');
+    console.log(fileToUpload.size);
+    const endpoint = 'http://localhost:8081/tracks';
+    const formData: FormData = new FormData();
+    // formData.append('track', fileToUpload, fileToUpload.name);
+    formData.append('name', fileToUpload.name);
+
+    var reader = new FileReader();
+    reader.onload = () => {
+      var offlineCtx = new OfflineAudioContext(2, 4100 * 40, 4100);
+      var audioCtx = new AudioContext();
+      var source = offlineCtx.createBufferSource();
+
+      var arrayBuffer = reader.result as ArrayBuffer;
+      var context = new AudioContext();
+      var audioSource = context.createBufferSource();
+      audioSource.connect(context.destination);
+      context.decodeAudioData(arrayBuffer, (audioBuffer) => {
+        // audioSource.buffer = audioBuffer;
+        // audioSource.start();
+        source.buffer = audioBuffer;
+        source.connect(offlineCtx.destination);
+        source.start();
+        offlineCtx.startRendering().then(function (renderedBuffer) {
+          console.log('Rendering completed successfully');
+          var song = audioCtx.createBufferSource();
+          song.buffer = renderedBuffer;
+          console.log(offlineCtx.length);
+          song.connect(audioCtx.destination);
+          song.start();
+          formData.append('track', renderedBuffer, fileToUpload.name);
+          // 32000
+        });
+
+      });
+
+    };
+    reader.readAsArrayBuffer(fileToUpload);
+
+    return this.http.post<String>(endpoint, formData).pipe(
+      tap(_ => console.log('posted audio file'))
+    );
+  }
+
+  deleteFile(id: String) {
+    const endpoint = `http://localhost:8081/tracks?tracksid=${id}`;
+    return this.http.delete<String>(endpoint).toPromise();
+  }
 
   getServices(): Observable<Service[]> {
     console.log('hello from getServices');
@@ -24,17 +75,6 @@ export class ServicesRepo {
       .pipe(
         tap(_ => console.log('fetched services'))
       );
-  }
-
-  postFile(fileToUpload: File): Observable<String> {
-    console.log('hello from post file');
-    const endpoint = 'http://localhost:8081/tracks';
-    const formData: FormData = new FormData();
-    formData.append('track', fileToUpload, fileToUpload.name);
-    formData.append('name', fileToUpload.name);
-    return this.http.post<String>(endpoint, formData).pipe(
-      tap(_ => console.log('posted audio file'))
-    );
   }
 
   addService(service: Service): Observable<Service> {

@@ -3,10 +3,11 @@ import { Service } from '../Service';
 
 import { ServicesRepo } from '../ServicesRepo';
 
-import {ServiceProvider } from "../../providers/serviceProvider";
+import { ServiceProvider } from "../../providers/serviceProvider";
 
-import { Inject }  from '@angular/core';
-import { DOCUMENT } from '@angular/common'; 
+import { Inject } from '@angular/core';
+import { DOCUMENT } from '@angular/common';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-service-audio',
@@ -21,16 +22,17 @@ export class ServiceAudioComponent implements OnInit {
   editMode: boolean;
 
   constructor(
+    public router: Router,
     public serviceProvider: ServiceProvider,
     private servicesRepo: ServicesRepo,
     @Inject(DOCUMENT) document) {
-      this.service = this.serviceProvider.getService();
+    this.service = this.serviceProvider.getService();
   }
 
   ngOnInit() {
     this.editMode = JSON.parse(localStorage.getItem('isEditMode')) as boolean;
-    if (this.service.audioId !== ''){
-        this.audioIdExisits = true;
+    if (this.service.audioId !== '') {
+      this.audioIdExisits = true;
     }
   }
 
@@ -43,11 +45,13 @@ export class ServiceAudioComponent implements OnInit {
   }
 
   loadAudio() {
+    console.log("audioId " + this.service.audioId);
+    console.log("audioIdExists " + this.audioIdExisits);
     document.getElementById('src').setAttribute('src', `http://localhost:8081/tracks?trackID=${this.service['audioId']}`);
   }
 
-  audioErrorListener(){
-    document.querySelectorAll("audio")[0].addEventListener('error', function(){
+  audioErrorListener() {
+    document.querySelectorAll("audio")[0].addEventListener('error', function () {
       alert("Audio file could not be loaded!");
     });
   }
@@ -59,8 +63,7 @@ export class ServiceAudioComponent implements OnInit {
 
   uploadFileToActivity() {
     this.servicesRepo.postFile(this.fileToUpload).subscribe((audioId) => {
-     alert('audio file uploaded');
-      console.log(audioId);
+      alert('audio file uploaded');
       let service: Service = {
         id: this.service.id as string,
         book: this.service.book as string,
@@ -72,7 +75,25 @@ export class ServiceAudioComponent implements OnInit {
       this.service = service;
       this.servicesRepo.addService(service).subscribe((res) => {
         alert('service updated with audio file');
-        this.loadAudio();
+        this.router.navigate(['/event/Services/adults']);
+      });
+    });
+  }
+
+  deleteFile() {
+    this.servicesRepo.deleteFile(this.service.audioId).finally(() => {
+      let service: Service = {
+        id: this.service.id as string,
+        book: this.service.book as string,
+        title: this.service.title as string,
+        who: this.service.who as string,
+        date: this.service.date as Date,
+        audioId: ''
+      }
+      this.service = service;
+      this.servicesRepo.addService(service).subscribe((res) => {
+        alert('audio file deleted.');
+        this.router.navigate(['/event/Services/adults']);
       });
     });
   }

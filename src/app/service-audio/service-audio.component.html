@@ -4,7 +4,7 @@
   </h1>
 
   <h3 *ngIf="audioIdExisits == false">Audio unavailable.</h3>
-  
+
 
   <div *ngIf="editMode && audioIdExisits === false" class="form-group">
     <label for="file">Upload audio</label>
@@ -12,7 +12,7 @@
   </div>
 
 
-  <div *ngIf="audioIdExisits == true">
+  <div *ngIf="audioIdExisits === true">
 
     <h3>{{service.title}}</h3>
 
@@ -28,7 +28,14 @@
       <mat-icon>calendar_today</mat-icon>{{service.date | date:'MM/dd/yyyy'}}
     </p>
 
-    <audio id="src" controls></audio>
+    <audio controls>
+      <source id="src" src="" type="audio/mpeg">
+    </audio>
+
   </div>
 
+
+  <div *ngIf="editMode && audioIdExisits === true" class="form-group">
+    <button (click)="deleteFile()">deleteFile</button>
+  </div>
 </div>
