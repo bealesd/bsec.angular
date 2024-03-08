@@ -9,7 +9,7 @@ import './extensions'
 
 
 export class AppComponent {
-  createdBy = "David Beales";
+  createdBy = "";
 
   @Input()
   src: string;
