@@ -1,7 +1,7 @@
 @media only screen and (min-height: 300px){
     #mainTitleDiv {
         background-color: grey;
-        background: url("../../../src/assets/img/main.jpg");
+        /* background: url("../../../src/assets/img/main.jpg"); */
         background-repeat: no-repeat;
         background-position: center;
         background-size: cover;
@@ -14,7 +14,7 @@
     @media only screen and (max-height: 299px){
         #mainTitleDiv {
             background-color: grey;
-            background: url("../../../src/assets/img/main.jpg");
+            /* background: url("../../../src/assets/img/main.jpg"); */
             background-repeat: no-repeat;
             background-position: center;
             background-size: cover;
